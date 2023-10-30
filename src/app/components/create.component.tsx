@@ -1,33 +1,34 @@
 'use client';
-
-import { User } from '@prisma/client';
-import React, { useState, FormEvent } from 'react';
+import React, { useState, FormEvent, FormEventHandler } from 'react';
+import { addPost } from '../../../api';
+import { useRouter } from 'next/navigation';
 
 export default function CreateUsers() {
-	async function onSubmit(event: FormEvent<HTMLFormElement>) {
-		event.preventDefault();
-		const formData = new FormData(event.currentTarget);
+	const router = useRouter();
+	const [newNameValue, setNewNameValue] = useState<string>('');
+	const [newEmailValue, setNewEmailValue] = useState<string>('');
+	const [newRoleValue, setNewRoleValue] = useState<string>('');
 
-		const res = await fetch('http://localhost:3000/api/users', {
-			method: 'POST',
+	const handelSubmitNewPost: FormEventHandler<HTMLFormElement> = async e => {
+		e.preventDefault();
 
-			body: formData,
+		await addPost({
+			name: newNameValue,
+			email: newEmailValue,
+			role: newRoleValue,
 		});
-		if (!res.ok) {
-			throw new Error(`HTTP error! Status: ${res.status}`);
-		}
 
-		const data = await res.json();
-
-		console.log(data);
-	}
+		router.refresh();
+	};
 	return (
 		<>
-			<form onSubmit={onSubmit}>
+			<form onSubmit={handelSubmitNewPost}>
 				<div className='w-full flex justify-center text-center'>
 					<div className='flex w-80  align-center flex-col  gap-6'>
 						<div className='relative h-10 w-full min-w-[200px]'>
 							<input
+								value={newNameValue}
+								onChange={e => setNewNameValue(e.target.value)}
 								type='text'
 								name='name'
 								className='peer h-full w-full rounded-[7px] border border-blue-gray-200 bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
@@ -39,6 +40,8 @@ export default function CreateUsers() {
 						</div>
 						<div className='relative h-10 w-full min-w-[200px]'>
 							<input
+								value={newEmailValue}
+								onChange={e => setNewEmailValue(e.target.value)}
 								type='text'
 								name='email'
 								className='peer h-full w-full rounded-[7px] border border-blue-gray-200 bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-purple-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
@@ -50,6 +53,8 @@ export default function CreateUsers() {
 						</div>
 						<div className='relative h-10 w-full min-w-[200px]'>
 							<input
+								value={newRoleValue}
+								onChange={e => setNewRoleValue(e.target.value)}
 								type='text'
 								name='role'
 								className='peer h-full w-full rounded-[7px] border border-blue-gray-200 bg-transparent px-3 py-2.5 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-indigo-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50'
@@ -66,7 +71,14 @@ export default function CreateUsers() {
 						type='submit'
 						className='group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white '
 					>
-						Hover me!
+						Submit
+						<div className='absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30'></div>
+					</button>
+					<button
+						className='group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white '
+						onClick={() => router.push('/')}
+					>
+						Main Page
 						<div className='absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30'></div>
 					</button>
 				</div>
