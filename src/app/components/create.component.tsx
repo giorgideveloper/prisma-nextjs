@@ -18,7 +18,7 @@ export default function CreateUsers() {
 			role: newRoleValue,
 		});
 
-		router.refresh();
+		router.push('/');
 	};
 	return (
 		<>
