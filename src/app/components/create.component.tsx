@@ -69,13 +69,13 @@ export default function CreateUsers() {
 				<div className='flex justify-center pt-8'>
 					<button
 						type='submit'
-						className='group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white '
+						className='group relative h-12 w-48 overflow-hidden rounded-2xl btn-warning font-bold '
 					>
 						Submit
-						<div className='absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30'></div>
+						<div className='absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30 '></div>
 					</button>
 					<button
-						className='group relative h-12 w-48 overflow-hidden rounded-2xl bg-green-500 text-lg font-bold text-white '
+						className='group relative h-12 w-48 overflow-hidden rounded-2xl btn-warning text-lg font-bold  '
 						onClick={() => router.push('/')}
 					>
 						Main Page
