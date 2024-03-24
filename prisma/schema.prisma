@@ -18,3 +18,14 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Cart {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  price       Float
+  image       String
+  rate        Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

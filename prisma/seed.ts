@@ -12,7 +12,16 @@ async function main() {
 			role: 'admin',
 		},
 	});
-
+	// const cart = await prisma.cart.upsert({
+	// 	create: {
+	// 		name: 'iphone',
+	// 		description: 'The best phone in the world',
+	// 		price: '100',
+	// 		image: '',
+	// 		rate: 5,
+	// 	},
+	// });
+	// console.log({ cart });
 	console.log({ user });
 }
 
