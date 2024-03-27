@@ -24,7 +24,7 @@ export default function Menu() {
 					</a>
 					<div className='flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse'>
 						<button type='button' className='btn btn-warning'>
-							Get started
+							Cart
 						</button>
 						<button
 							data-collapse-toggle='navbar-cta'

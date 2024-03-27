@@ -1,7 +1,25 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
 
-export default function Card() {
+const getData = async () => {
+	try {
+		const response = await fetch(`http://localhost:3000/api/cart`, {
+			cache: 'no-store',
+		});
+		if (!response.ok) {
+			throw new Error('Failed to fetch data');
+		}
+		const data = await response.json();
+		console.log('🚀 ~ getData ~ data:', data);
+		return data;
+	} catch (error) {
+		console.error('Error fetching data:', error);
+
+		return null;
+	}
+};
+
+export default function Card({ data }: any) {
+	console.log(data);
 	return (
 		<div>
 			<div className='w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>

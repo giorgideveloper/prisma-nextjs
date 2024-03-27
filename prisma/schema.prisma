@@ -26,6 +26,7 @@ model Cart {
   price       Float
   image       String
   rate        Float
+  ownerId     String   @unique
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
