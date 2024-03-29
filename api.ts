@@ -36,3 +36,13 @@ export const deleteUser = async (id: string): Promise<void> => {
 		method: 'DELETE',
 	});
 };
+
+export const addPostCart = async (data: Ipost): Promise<Ipost> => {
+	const res = await fetch(`${baseUrl}/cart`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(data),
+	});
+	const newTodo = await res.json();
+	return newTodo;
+};
