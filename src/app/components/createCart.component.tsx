@@ -2,20 +2,33 @@
 import FormEventHandler from 'react';
 import { addPostCart } from '../../../api';
 
+interface formType {
+	name: string;
+	description: string;
+	rate: number;
+	ownerId: string;
+	price: number;
+	image: string;
+	email: string;
+	role: string;
+}
+
 export default function CreateCart() {
-	const onSubmit = async (event: FormEventHandler<HTMLFormElement>) => {
+	const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
 		const formData = new FormData(event.currentTarget);
 
-		await addPostCart({
-			name: formData.get('name'),
-			description: formData.get('description'),
-			rate: parseFloat(formData.get('rate')),
-			ownerId: formData.get('ownerId'),
-			price: parseFloat(formData.get('price')),
-			image: formData.get('image'),
-		});
+		const formDataObject: formType = {
+			name: formData.get('name') as string,
+			description: formData.get('description') as string,
+			rate: parseFloat(formData.get('rate') as string),
+			ownerId: formData.get('ownerId') as string,
+			price: parseFloat(formData.get('price') as string),
+			image: formData.get('image') as string,
+		};
+
+		await addPostCart(formDataObject);
 	};
 	return (
 		<>
