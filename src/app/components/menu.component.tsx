@@ -57,20 +57,10 @@ export default function Menu() {
 							<a onClick={() => Router.push('/users')}>Users</a>
 						</li>
 						<li>
-							<details>
-								<summary>Parent</summary>
-								<ul className='p-2'>
-									<li>
-										<a>Submenu 1</a>
-									</li>
-									<li>
-										<a>Submenu 2</a>
-									</li>
-								</ul>
-							</details>
+							<a onClick={() => Router.push('/create')}>Create User</a>
 						</li>
 						<li>
-							<a>Item 3</a>
+							<a onClick={() => Router.push('/contact')}>Contact</a>
 						</li>
 					</ul>
 				</div>
